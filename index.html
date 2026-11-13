@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Vierges de Lourdes, Vierges Miraculeuses, Sainte Famille et crèche de Noël, imprimées à la pièce. À partir de 7 €.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://evangelys.fr/">
+<meta property="og:title" content="Evangelys">
+<meta property="og:description" content="Vierges, Sainte Famille et crèche de Noël imprimées à la pièce. À partir de 7 €.">
+<meta property="og:image" content="https://evangelys.fr/partage.jpg">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath fill='%23b48a3c' d='M16 2l3.6 9.4L29 12l-7.4 6.2L24 28l-8-5.4L8 28l2.4-9.8L3 12l9.4-.6z'/%3E%3C/svg%3E">
+<title>Evangelys</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Marcellus&family=Figtree:wght@400;500;600&display=swap">
+<style>
+/* Layout: a quiet chapel wall. Inscriptional caps for names, one column of large figures, a single gilt thread. */
+:root{
+  --stone:#eef0f3;      /* page: cool plaster with a blue bias */
+  --niche:#e2e6ec;      /* photo frames and fields */
+  --ink:#1c2433;        /* text */
+  --muted:#5b6475;
+  --marial:#2a4a86;     /* Marian blue, the accent */
+  --gilt:#b48a3c;       /* used once or twice, like leaf */
+  --line:#cfd5de;
+  --glow:#f8f9fb;
+  --shadow:rgba(28,36,51,.28);
+  --display:"Marcellus","Trajan Pro",Georgia,serif;
+  --body:"Figtree",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --stone:#12161e;--niche:#1b212c;--ink:#e7eaf0;--muted:#9aa3b4;--marial:#8fb0ec;--gilt:#d6b06a;--line:#2b3342;--glow:#2c3443;--shadow:rgba(0,0,0,.6);color-scheme:dark}}
+:root[data-theme="dark"]{--stone:#12161e;--niche:#1b212c;--ink:#e7eaf0;--muted:#9aa3b4;--marial:#8fb0ec;--gilt:#d6b06a;--line:#2b3342;--glow:#2c3443;--shadow:rgba(0,0,0,.6);color-scheme:dark}
+
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--stone);color:var(--ink);font:400 1rem/1.6 var(--body);
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.wrap{max-width:1080px;margin:0 auto}
+a{color:var(--marial)}
+:focus-visible{outline:2px solid var(--marial);outline-offset:3px}
+
+header{display:flex;justify-content:space-between;align-items:center;gap:16px;padding-block:24px;border-bottom:1px solid var(--line)}
+.mark{font:400 1.35rem/1 var(--display);letter-spacing:.32em;text-decoration:none;color:var(--ink)}
+.mark span{color:var(--gilt)}
+nav{display:flex;gap:20px;font-size:.9rem}
+nav a{color:var(--muted);text-decoration:none}
+nav a:hover{color:var(--ink)}
+
+.hero{padding-block:72px 56px;display:grid;gap:20px;max-width:46rem}
+.eyebrow{font-size:.75rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin:0}
+h1{font:400 clamp(2.2rem,5.5vw,3.6rem)/1.08 var(--display);margin:0;text-wrap:balance}
+h1 em{font-style:normal;color:var(--marial)}
+.hero p.lead{font-size:1.125rem;color:var(--muted);margin:0;max-width:36rem}
+
+h2{font:400 clamp(1.6rem,3.5vw,2.2rem)/1.15 var(--display);margin:0;text-wrap:balance}
+section{padding-block:48px}
+
+.models{display:grid;gap:72px;padding-block:24px 48px}
+.model{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:48px;align-items:start}
+.model:nth-child(even) .viewer{order:2}
+.viewer{display:grid;gap:12px}
+.frame{aspect-ratio:3/4;max-width:100%;background:radial-gradient(ellipse 70% 55% at 50% 42%,var(--glow),var(--niche) 70%);overflow:hidden;border-radius:2px;position:relative}
+.frame::after{content:"";position:absolute;left:28%;right:28%;bottom:5.5%;height:3%;border-radius:50%;background:var(--shadow);filter:blur(10px)}
+.frame img{width:100%;height:100%;object-fit:contain;display:block;position:relative;z-index:1}
+.thumbs{display:flex;gap:8px;flex-wrap:wrap}
+.thumbs button{all:unset;cursor:pointer;width:64px;aspect-ratio:3/4;background:var(--niche);opacity:.55;transition:opacity .2s;border-radius:2px;overflow:hidden}
+.thumbs button img{width:100%;height:100%;object-fit:contain;display:block}
+.thumbs button[aria-pressed="true"],.thumbs button:hover{opacity:1}
+.thumbs button:focus-visible{outline:2px solid var(--marial);outline-offset:2px}
+
+.info{display:grid;gap:18px;padding-top:8px;min-width:0}
+.info .kind{font-size:.75rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gilt);margin:0}
+.info p{margin:0;color:var(--muted);max-width:32rem}
+.swatches{display:grid;gap:10px}
+.swatches .label{font-size:.85rem;color:var(--muted)}
+.swatches .label b{color:var(--ink);font-weight:500}
+.chips{display:flex;gap:10px;flex-wrap:wrap}
+.chip{all:unset;cursor:pointer;width:30px;height:30px;border-radius:50%;box-shadow:inset 0 0 0 1px rgba(0,0,0,.15);position:relative}
+.chip[aria-pressed="true"]::after{content:"";position:absolute;inset:-5px;border-radius:50%;border:1.5px solid var(--ink)}
+.chip:focus-visible{outline:2px solid var(--marial);outline-offset:6px}
+.sizes{display:flex;gap:8px;flex-wrap:wrap}
+.size{all:unset;cursor:pointer;padding:8px 14px;border:1px solid var(--line);border-radius:2px;font-size:.9rem;font-variant-numeric:tabular-nums}
+.size:hover{border-color:var(--ink)}
+.size[aria-pressed="true"]{border-color:var(--ink);background:var(--ink);color:var(--stone)}
+.size:focus-visible{outline:2px solid var(--marial);outline-offset:2px}
+.info .price{font:400 2rem/1 var(--display);color:var(--ink);font-variant-numeric:tabular-nums}
+.mail-row{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:16px}
+.mail{font-weight:500;color:var(--ink);user-select:all;overflow-wrap:anywhere}
+.copy{all:unset;cursor:pointer;font-size:.8rem;padding:4px 10px;border:1px solid var(--line);border-radius:2px;color:var(--muted)}
+.copy:hover{color:var(--ink);border-color:var(--ink)}
+.copy:focus-visible{outline:2px solid var(--marial);outline-offset:2px}
+.cta{justify-self:start;font:500 .95rem/1 var(--body);color:var(--stone);background:var(--ink);border:0;padding:14px 22px;border-radius:2px;cursor:pointer;text-decoration:none}
+.cta:hover{background:var(--marial)}
+
+.craft{border-top:1px solid var(--line);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.4fr);gap:48px}
+.craft dl{display:grid;gap:20px;margin:0}
+.craft dt{font:400 1.1rem/1.3 var(--display);letter-spacing:.04em}
+.craft dd{margin:4px 0 0;color:var(--muted)}
+
+.notify{border-top:1px solid var(--line);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.4fr);gap:48px}
+.notify .intro p{color:var(--muted);margin:12px 0 0}
+form{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.field{display:grid;gap:6px;min-width:0}
+.field.full{grid-column:1/-1}
+label{font-size:.85rem;color:var(--muted)}
+input,select,textarea{font:inherit;color:var(--ink);background:var(--niche);border:1px solid transparent;border-radius:2px;padding:12px;width:100%}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--marial)}
+textarea{min-height:96px;resize:vertical}
+.form-actions{grid-column:1/-1;display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.note{font-size:.9rem;color:var(--muted);margin:0}
+.done{grid-column:1/-1;padding:16px;background:var(--niche);border-left:2px solid var(--gilt)}
+
+footer{border-top:1px solid var(--line);padding-block:32px 48px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:.85rem;color:var(--muted)}
+footer .mark{font-size:.95rem}
+
+@media (max-width:760px){
+  .model,.craft,.notify{grid-template-columns:minmax(0,1fr);gap:24px}
+  .model:nth-child(even) .viewer{order:0}
+  .hero{padding-block:48px 32px}
+  form{grid-template-columns:minmax(0,1fr)}
+  nav{display:none}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header>
+    <a class="mark" href="#top" id="top">EVANG<span>E</span>LYS</a>
+    <nav aria-label="Sections">
+      <a href="#modeles">Les modèles</a>
+      <a href="#fabrication">Fabrication</a>
+      <a href="#commander">Commander</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <p class="eyebrow">Statues de dévotion · imprimées à la pièce</p>
+    <h1>Des Vierges pour la maison, <em>dans la couleur qui lui ressemble</em></h1>
+    <p class="lead">Notre-Dame de Lourdes, la Vierge Miraculeuse, la Sainte Famille et une crèche de Noël en 9 pièces. Des figures fidèles à la tradition, imprimées une à une, en or, en blanc, en bleu ou en noir. À partir de 7 €.</p>
+  </section>
+
+  <div class="models" id="modeles"></div>
+
+  <section class="craft" id="fabrication">
+    <h2>Comment elles sont faites</h2>
+    <dl>
+      <div><dt>Une pièce à la fois</dt><dd>Chaque statue est imprimée seule, couche après couche. Les fines lignes que l'on devine sur le drapé viennent de là.</dd></div>
+      <div><dt>Un fil au rendu satiné</dt><dd>Le filament utilisé a un léger reflet soyeux qui accroche la lumière dans les plis du manteau et du voile.</dd></div>
+      <div><dt>La couleur de votre choix</dt><dd>Le même modèle peut être imprimé en or, en blanc, en bleu, en anthracite ou en noir, selon la pièce où il prendra place.</dd></div>
+    </dl>
+  </section>
+
+  <section class="notify" id="commander">
+    <div class="intro">
+      <h2>Commander</h2>
+      <p>Choisissez le modèle, la couleur et la taille. Votre messagerie s'ouvre avec la demande prête à envoyer, et nous vous répondons pour le paiement et la livraison.</p>
+      <div class="mail-row"><span>Ou écrivez directement à</span> <span class="mail" id="mail">louisbruvierda@gmail.com</span> <button class="copy" type="button" id="copy">Copier</button></div>
+    </div>
+    <form id="interest" novalidate>
+      <div class="field"><label for="f-name">Prénom</label><input id="f-name" name="prenom" autocomplete="given-name" required></div>
+      <div class="field"><label for="f-mail">E-mail</label><input id="f-mail" name="email" type="email" autocomplete="email" required></div>
+      <div class="field full"><label for="f-model">Modèle</label><select id="f-model" name="modele"></select></div>
+      <div class="field"><label for="f-color">Couleur</label><select id="f-color" name="couleur"></select></div>
+      <div class="field"><label for="f-size">Taille</label><select id="f-size" name="hauteur"></select></div>
+      <div class="field full"><label for="f-msg">Un mot (facultatif)</label><textarea id="f-msg" name="message" placeholder="Une quantité, un cadeau de baptême, une date de livraison…"></textarea></div>
+      <div class="form-actions">
+        <button class="cta" type="submit">Envoyer ma demande</button>
+        <p class="note" id="f-error" role="alert"></p>
+      </div>
+      <div class="done" id="f-done" hidden></div>
+    </form>
+  </section>
+
+  <footer>
+    <span class="mark">EVANG<span>E</span>LYS</span>
+    <span>evangelys.fr · louisbruvierda@gmail.com</span>
+  </footer>
+</div>
+
+<script>
+/* Liens de paiement Stripe : collez l'adresse buy.stripe.com à côté du modèle.
+   Tant qu'un lien est vide, le bouton mène au formulaire de commande. */
+const STRIPE={creche:"",lourdes:"",miraculeuse:"",famille:""};
+const CONTACT="louisbruvierda@gmail.com";
+const MODELS=[
+  {id:"lourdes",name:"Notre-Dame de Lourdes",kind:"Mains jointes · chapelet",
+   text:"Telle qu'elle apparut à Bernadette : le voile tombant sur les épaules, les mains jointes, le chapelet glissé au bras et une rose à chaque pied, posée sur le rocher de la grotte.",
+   colors:[
+     {name:"Blanc",hex:"#f4f4f2",photos:["lourdes-blanc-1","lourdes-blanc-2","lourdes-blanc-3"]},
+     {name:"Or mat",hex:"#b8973f",photos:["lourdes-ormat-1","lourdes-ormat-2","lourdes-ormat-3"]},
+     {name:"Or satiné",hex:"#d9a35a",photos:["lourdes-orsatin-1","lourdes-orsatin-2","lourdes-orsatin-3"]},
+     {name:"Gris",hex:"#7d7f85",photos:["lourdes-gris-1","lourdes-gris-2","lourdes-gris-3"]},
+     {name:"Bleu ciel",hex:"#4fb3d9",photos:["lourdes-bleu-1","lourdes-bleu-2","lourdes-bleu-3"]}]},
+  {id:"miraculeuse",name:"La Vierge Miraculeuse",kind:"Mains ouvertes",
+   text:"Les bras ouverts et les mains tendues vers ceux qui la prient, d'après l'apparition de la rue du Bac. Le manteau s'ouvre en larges plis jusqu'au socle.",
+   colors:[
+     {name:"Or",hex:"#d8a542",photos:["miraculeuse-or"]},
+     {name:"Blanc",hex:"#f4f4f2",photos:["miraculeuse-blanc"]},
+     {name:"Anthracite",hex:"#4a4d52",photos:["miraculeuse-anthracite"]},
+     {name:"Noir",hex:"#151515",photos:["miraculeuse-noir"]}]},
+  {id:"famille",name:"La Sainte Famille",kind:"Joseph, Marie et l'Enfant",
+   text:"Joseph et Marie penchés l'un vers l'autre, l'Enfant entre leurs mains. Des visages à peine esquissés, pour une statue douce et moderne qui trouve sa place partout.",
+   colors:[{name:"Blanc",hex:"#f4f4f2",photos:["famille-2","famille-1","famille-3"]}]}
+];
+const STD=[{cm:9,price:7},{cm:12,price:9},{cm:15,price:12}];
+MODELS[0].sizes=STD;MODELS[1].sizes=STD;MODELS[2].sizes=[{cm:9,price:10},{cm:12,price:12}];
+MODELS.unshift({id:"creche",name:"La crèche de Noël",kind:"9 pièces",
+  text:"L'arche à l'étoile, Joseph, Marie, l'Enfant dans sa mangeoire, l'âne, le bœuf et les trois Rois mages. Des formes simples et douces, toutes en blanc, pour une crèche moderne sur une étagère ou une cheminée.",
+  colors:[{name:"Blanc",hex:"#f4f4f2",photos:["creche-2","creche-1","creche-3"]}],
+  sizes:[{cm:"9p",label:"Les 9 pièces",price:16}]});
+const lab=z=>z.label||`${z.cm} cm`;
+const src=p=>`cut/${p}.webp`;
+const root=document.getElementById("modeles");
+
+MODELS.forEach(m=>{
+  const el=document.createElement("article");el.className="model";el.id=m.id;
+  el.innerHTML=`
+    <div class="viewer">
+      <div class="frame"><img alt="" loading="lazy"></div>
+      <div class="thumbs" role="group" aria-label="Vues"></div>
+    </div>
+    <div class="info">
+      <p class="kind">${m.kind}</p>
+      <h2>${m.name}</h2>
+      <p>${m.text}</p>
+      <div class="swatches">
+        <span class="label">Couleur : <b></b></span>
+        <div class="chips" role="group" aria-label="Couleurs"></div>
+      </div>
+      <div class="swatches">
+        <span class="label">Hauteur : <b class="size-label"></b></span>
+        <div class="sizes" role="group" aria-label="Hauteurs"></div>
+      </div>
+      <p class="price"></p>
+      <a class="cta" href="#commander">Commander</a>
+    </div>`;
+  const sizesEl=el.querySelector(".sizes"),sizeLabel=el.querySelector(".size-label"),priceEl=el.querySelector(".price");
+  let size=m.sizes[0];
+  function setSize(sz){
+    size=sz;sizeLabel.textContent=lab(sz);priceEl.textContent=`${sz.price} €`;
+    [...sizesEl.children].forEach(b=>b.setAttribute("aria-pressed",b.dataset.cm==sz.cm));
+  }
+  m.sizes.forEach(sz=>{
+    const b=document.createElement("button");b.type="button";b.className="size";b.dataset.cm=sz.cm;
+    b.textContent=lab(sz);b.onclick=()=>setSize(sz);sizesEl.appendChild(b);
+  });
+  setSize(size);
+  sizesEl.parentElement.hidden=m.sizes.length<2;
+  const img=el.querySelector(".frame img"),thumbs=el.querySelector(".thumbs"),
+        chips=el.querySelector(".chips"),label=el.querySelector(".label b");
+  let current=m.colors[0];
+  function show(color,i){
+    current=color;
+    img.src=src(color.photos[i]);img.alt=`${m.name}, ${color.name.toLowerCase()}`;
+    label.textContent=color.name;
+    [...chips.children].forEach(c=>c.setAttribute("aria-pressed",c.dataset.c===color.name));
+    thumbs.innerHTML="";thumbs.hidden=color.photos.length<2;
+    color.photos.forEach((p,j)=>{
+      const b=document.createElement("button");b.type="button";
+      b.setAttribute("aria-label",`Vue ${j+1}`);b.setAttribute("aria-pressed",j===i);
+      b.innerHTML=`<img src="${src(p)}" alt="" loading="lazy">`;
+      b.onclick=()=>show(color,j);thumbs.appendChild(b);
+    });
+  }
+  m.colors.forEach(c=>{
+    const b=document.createElement("button");b.type="button";b.className="chip";
+    b.dataset.c=c.name;b.style.background=c.hex;b.setAttribute("aria-label",c.name);b.title=c.name;
+    b.onclick=()=>show(c,0);chips.appendChild(b);
+  });
+  if(m.colors.length<2)el.querySelector(".swatches .chips").hidden=true;
+  const buy=el.querySelector("a.cta");
+  if(STRIPE[m.id]){buy.href=STRIPE[m.id];buy.target="_blank";buy.rel="noopener";buy.textContent="Acheter";}
+  buy.addEventListener("click",()=>{
+    fModel.value=m.id;fillColors();fColor.value=current.name;fSize.value=size.cm;
+  });
+  show(current,0);
+  root.appendChild(el);
+});
+
+const fModel=document.getElementById("f-model"),fColor=document.getElementById("f-color"),fSize=document.getElementById("f-size");
+MODELS.forEach(m=>fModel.add(new Option(m.name,m.id)));
+function fillColors(){
+  const m=MODELS.find(x=>x.id===fModel.value);fColor.innerHTML="";
+  m.colors.forEach(c=>fColor.add(new Option(c.name,c.name)));
+  fSize.innerHTML="";
+  m.sizes.forEach(z=>fSize.add(new Option(`${lab(z)} · ${z.price} €`,z.cm)));
+}
+fModel.onchange=fillColors;fillColors();
+
+document.getElementById("interest").addEventListener("submit",e=>{
+  e.preventDefault();
+  const name=document.getElementById("f-name"),mail=document.getElementById("f-mail"),
+        err=document.getElementById("f-error"),done=document.getElementById("f-done");
+  if(!name.value.trim()){err.textContent="Indiquez votre prénom.";name.focus();return}
+  if(!mail.validity.valid||!mail.value){err.textContent="Indiquez une adresse e-mail valide, par exemple marie@exemple.fr.";mail.focus();return}
+  err.textContent="";
+  const m=MODELS.find(x=>x.id===fModel.value),z=m.sizes.find(x=>x.cm==fSize.value);
+  const line=`${m.name}, ${fColor.value.toLowerCase()}, ${lab(z).toLowerCase()} (${z.price} €)`;
+  const body=`Bonjour,\n\nJe souhaite commander : ${line}.\n\n${document.getElementById("f-msg").value.trim()}\n\n${name.value.trim()}\n${mail.value.trim()}`;
+  location.href=`mailto:${CONTACT}?subject=${encodeURIComponent("Commande Evangelys : "+m.name)}&body=${encodeURIComponent(body)}`;
+  done.hidden=false;
+  done.textContent=`Votre messagerie devrait s'ouvrir avec la demande pour ${line}. Si rien ne s'ouvre, écrivez-nous à ${CONTACT} en recopiant ces informations.`;
+});
+document.getElementById("copy").addEventListener("click",e=>{
+  const btn=e.currentTarget,txt=document.getElementById("mail").textContent;
+  const ok=()=>{btn.textContent="Copié";setTimeout(()=>btn.textContent="Copier",1600)};
+  const pick=()=>{const r=document.createRange();r.selectNodeContents(document.getElementById("mail"));const s=getSelection();s.removeAllRanges();s.addRange(r)};
+  try{navigator.clipboard.writeText(txt).then(ok,pick)}catch(_){pick()}
+});
+</script>
+</body>
+</html>
