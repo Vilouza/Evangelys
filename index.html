@@ -100,6 +100,7 @@ section{padding-block:48px}
 .info .hint{font-size:.8rem;margin-top:-6px}
 .buy-row{display:flex;gap:18px;align-items:center;flex-wrap:wrap}
 .buy-row .ask{color:var(--muted);font-size:.9rem}
+.info .price s{font-size:1.1rem;color:var(--muted);margin-left:8px;text-decoration-thickness:1px}
 .info .price{font:400 2rem/1 var(--display);color:var(--ink);font-variant-numeric:tabular-nums}
 .mail-row{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:16px}
 .mail{font-weight:500;color:var(--ink);user-select:all;overflow-wrap:anywhere}
@@ -213,6 +214,16 @@ const STRIPE={
   miraculeuse:{9:"https://buy.stripe.com/00wbJ03MBh1Z0xVd0QgUM04",12:"https://buy.stripe.com/4gM9ASfvj5jh6Wj4ukgUM05",15:"https://buy.stripe.com/bJe6oGgznfXVfsP9OEgUM06"},
   famille:{9:"https://buy.stripe.com/3cI14m6YN4fd4Obgd2gUM07",12:"https://buy.stripe.com/14AbJ02Ix9zxfsP0e4gUM08"}
 };
+/* Lots de Vierges : chaque Vierge en plus coûte 2 € de moins. */
+const LOTS={
+  lourdes:{9:{2:"https://buy.stripe.com/bJe7sK5UJ8vt5Sf5yogUM09",3:"https://buy.stripe.com/aFadR83MBh1Z2G34ukgUM0a"},
+           12:{2:"https://buy.stripe.com/bJe14m2Ix275dkH1i8gUM0b",3:"https://buy.stripe.com/5kQ3cu0ApdPN4Obe4UgUM0c"},
+           15:{2:"https://buy.stripe.com/4gM5kCerf6nlfsPd0QgUM0d",3:"https://buy.stripe.com/fZu9ASfvjaDB1BZ2mcgUM0e"}},
+  miraculeuse:{9:{2:"https://buy.stripe.com/aFaaEWerfbHF1BZ9OEgUM0f",3:"https://buy.stripe.com/14A4gydnbeTR4Ob3qggUM0g"},
+           12:{2:"https://buy.stripe.com/eVq00igzn4fd5Sf0e4gUM0h",3:"https://buy.stripe.com/7sY9ASgzneTR2G39OEgUM0i"},
+           15:{2:"https://buy.stripe.com/4gM28qaaZ3b95Sf4ukgUM0j",3:"https://buy.stripe.com/28E3cu82R8vta8v0e4gUM0k"}}
+};
+const lotPrice=(base,n)=>base*n-2*(n-1);
 const CONTACT="louisbruvierda@gmail.com";
 const MODELS=[
   {id:"lourdes",name:"Notre-Dame de Lourdes",kind:"Mains jointes · chapelet",
@@ -263,18 +274,32 @@ MODELS.forEach(m=>{
         <span class="label">Hauteur : <b class="size-label"></b></span>
         <div class="sizes" role="group" aria-label="Hauteurs"></div>
       </div>
+      <div class="swatches qty-block" hidden>
+        <span class="label">Quantité : <b class="qty-label"></b></span>
+        <div class="sizes qtys" role="group" aria-label="Quantité"></div>
+      </div>
       <p class="price"></p>
       <p class="ship">Livraison 3,90 € · offerte dès 30 € avec le code <b>LIVRAISON30</b></p>
       <div class="buy-row"><a class="cta" href="#commander">Commander</a><a class="ask" href="#commander">Une question ?</a></div>
-      <p class="hint" hidden>Vous choisirez la couleur sur la page de paiement.</p>
+      <p class="hint" hidden></p>
     </div>`;
   const buy=el.querySelector("a.cta"),links=STRIPE[m.id]||{};
-  if(Object.keys(links).length){buy.target="_blank";buy.rel="noopener";buy.textContent="Acheter";if(m.colors.length>1)el.querySelector(".hint").hidden=false;}
-  const sizesEl=el.querySelector(".sizes"),sizeLabel=el.querySelector(".size-label"),priceEl=el.querySelector(".price");
+  if(Object.keys(links).length){buy.target="_blank";buy.rel="noopener";buy.textContent="Acheter";}
+  const lots=LOTS[m.id],qtyBlock=el.querySelector(".qty-block"),qtysEl=el.querySelector(".qtys"),qtyLabel=el.querySelector(".qty-label"),hint=el.querySelector(".hint");
+  let qty=1;
+  function refresh(){
+    const n=lots?qty:1,total=lotPrice(size.price,n);
+    priceEl.innerHTML=n>1?`${total} € <s>${size.price*n} €</s>`:`${total} €`;
+    buy.href=(n>1?lots[size.cm][n]:links[size.cm])||"#commander";
+    qtyLabel.textContent=n>1?`${n} Vierges`:"1 Vierge";
+    [...qtysEl.children].forEach(b=>b.setAttribute("aria-pressed",+b.dataset.n===n));
+    if(m.colors.length>1&&links[size.cm]){hint.hidden=false;hint.textContent=n>1?"Vous choisirez la couleur de chaque Vierge sur la page de paiement : vous pouvez les varier.":"Vous choisirez la couleur sur la page de paiement.";}
+  }
+  if(lots){qtyBlock.hidden=false;[1,2,3].forEach(n=>{const b=document.createElement("button");b.type="button";b.className="size";b.dataset.n=n;b.textContent=n;b.onclick=()=>{qty=n;refresh();};qtysEl.appendChild(b);});}
+  const sizesEl=el.querySelector(".sizes:not(.qtys)"),sizeLabel=el.querySelector(".size-label"),priceEl=el.querySelector(".price");
   let size=m.sizes[0];
   function setSize(sz){
-    size=sz;sizeLabel.textContent=lab(sz);priceEl.textContent=`${sz.price} €`;
-    if(links[sz.cm])buy.href=links[sz.cm];
+    size=sz;sizeLabel.textContent=lab(sz);refresh();
     [...sizesEl.children].forEach(b=>b.setAttribute("aria-pressed",b.dataset.cm==sz.cm));
   }
   m.sizes.forEach(sz=>{
