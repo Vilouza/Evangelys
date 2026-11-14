@@ -9,3 +9,12 @@ Site statique publié avec GitHub Pages.
 - `cut/` : photos détourées, toutes au même format (900 × 1200, fond transparent).
 - `partage.jpg` : image d'aperçu quand le lien est partagé sur les réseaux.
 - `CNAME` : relie le site au domaine evangelys.fr.
+
+Pages produit (HTML statique, un dossier par fiche) :
+
+- `creche-de-noel-9-pieces/`
+- `statue-notre-dame-de-lourdes/`
+- `statue-vierge-miraculeuse/`
+- `statue-sainte-famille/`
+
+`catalog.js` : liste des modèles, couleurs, tailles, prix et liens Stripe, et le script qui enrichit les fiches (couleur, taille, lots). `site.css` : styles partagés.
