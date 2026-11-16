@@ -22,10 +22,10 @@ const src=p=>`${ROOT}cut/${p}.webp`;
 const pageHref=slug=>`${ROOT}${slug}/`;
 
 const MODELS=[
-  {id:"creche",slug:"creche-de-noel-9-pieces",name:"La crèche de Noël",kind:"9 pièces",
-   text:"Une crèche de Noël moderne en 9 pièces : l'arche à l'étoile, Joseph, Marie, l'Enfant dans sa mangeoire, l'âne, le bœuf et les trois Rois mages. Des formes simples et douces, toutes en blanc, pour une crèche moderne sur une étagère ou une cheminée.",
-   colors:[{name:"Blanc",hex:"#f4f4f2",photos:["creche-2","creche-1","creche-3"]}],
-   sizes:[{cm:"9p",label:"Les 9 pièces",price:16}]},
+  {id:"creche",slug:"creche-de-noel-9-pieces",name:"La crèche de Noël",kind:"10 pièces",
+   text:"Une crèche de Noël moderne en 10 pièces : l'arche à l'étoile, Joseph, Marie, l'Enfant dans sa mangeoire, l'âne, le bœuf et les trois Rois mages et leur dromadaire. Des formes simples et douces, toutes en blanc, pour une crèche moderne sur une étagère ou une cheminée.",
+   colors:[{name:"Blanc",hex:"#f4f4f2",photos:["creche-photo-1","creche-photo-2","creche-photo-3"]}],
+   sizes:[{cm:"9p",label:"Les 10 pièces",price:16}]},
   {id:"lourdes",slug:"statue-notre-dame-de-lourdes",name:"Notre-Dame de Lourdes",kind:"Mains jointes · chapelet",
    text:"Statue de Notre-Dame de Lourdes telle qu'elle est apparue à Bernadette : le voile tombant sur les épaules, les mains jointes, le chapelet glissé au bras et une rose à chaque pied, posée sur le rocher de la grotte.",
    colors:[
