@@ -45,7 +45,7 @@ const MODELS=[
    sizes:[{cm:9,price:7},{cm:12,price:9},{cm:15,price:12}]},
   {id:"famille",slug:"statue-sainte-famille",name:"La Sainte Famille",kind:"Joseph, Marie et l'Enfant",
    text:"Statue de la Sainte Famille : Joseph et Marie penchés l'un vers l'autre, l'Enfant entre leurs mains. Des visages à peine esquissés, pour une statue douce et moderne qui trouve sa place partout.",
-   colors:[{name:"Blanc",hex:"#f4f4f2",photos:["famille-studio","famille-2","famille-1","famille-3"]}],
+   colors:[{name:"Blanc",hex:"#f4f4f2",photos:["famille-studio","famille-troisquarts","famille-profil"]}],
    sizes:[{cm:9,price:10},{cm:12,price:12}]}
 ];
 
