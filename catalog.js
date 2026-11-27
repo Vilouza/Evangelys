@@ -5,7 +5,10 @@ const STRIPE={
   creche:{"9p":"https://buy.stripe.com/cNidR80Ap8vt1BZ0e4gUM00"},
   lourdes:{9:"https://buy.stripe.com/28E9ASaaZ3b9fsP5yogUM01",12:"https://buy.stripe.com/7sY28q5UJbHFfsP9OEgUM02",15:"https://buy.stripe.com/3cI4gy2Ix2750xV6CsgUM03"},
   miraculeuse:{9:"https://buy.stripe.com/00wbJ03MBh1Z0xVd0QgUM04",12:"https://buy.stripe.com/4gM9ASfvj5jh6Wj4ukgUM05",15:"https://buy.stripe.com/bJe6oGgznfXVfsP9OEgUM06"},
-  famille:{9:"https://buy.stripe.com/3cI14m6YN4fd4Obgd2gUM07",12:"https://buy.stripe.com/14AbJ02Ix9zxfsP0e4gUM08"}
+  famille:{9:"https://buy.stripe.com/3cI14m6YN4fd4Obgd2gUM07",12:"https://buy.stripe.com/14AbJ02Ix9zxfsP0e4gUM08"},
+  /* Vide : le bouton ouvre le formulaire, le temps de créer le lien Stripe. */
+  exvoto:{15:""},
+  colombes:{10:""}
 };
 /* Lots de Vierges : chaque Vierge en plus coûte 2 € de moins. */
 const LOTS={
@@ -46,12 +49,19 @@ const MODELS=[
   {id:"famille",slug:"statue-sainte-famille",name:"La Sainte Famille",kind:"Joseph, Marie et l'Enfant",
    text:"Statue de la Sainte Famille : Joseph et Marie penchés l'un vers l'autre, l'Enfant entre leurs mains. Des visages à peine esquissés, pour une statue douce et moderne qui trouve sa place partout.",
    colors:[{name:"Blanc",hex:"#f4f4f2",photos:["famille-studio","famille-troisquarts","famille-profil"]}],
-   sizes:[{cm:9,price:10},{cm:12,price:12}]}
+   sizes:[{cm:9,price:10},{cm:12,price:12}]},
+  {id:"exvoto",slug:"ex-voto-coeur-sacre",name:"Ex-voto Cœur Sacré",kind:"Décoration murale",
+   text:"Un cœur enflammé, entouré de rayons, à accrocher au mur. Finition blanche, 15 cm de haut. Il trouve sa place dans un coin prière, et se donne volontiers pour un baptême ou une communion. Expédition sous 2-3 jours.",
+   colors:[{name:"Blanc",hex:"#f4f4f2",photos:["exvoto-1"]}],
+   sizes:[{cm:15,price:12}]},
+  {id:"colombes",slug:"lot-de-3-colombes-murales",name:"Lot de 3 colombes murales",kind:"Décoration murale",
+   text:"Trois colombes à fixer au mur, 10 cm chacune, finition blanche. Elles s'alignent au-dessus d'un lit ou d'une commode, dans une chambre d'enfant ou près d'un coin prière. Un cadeau simple pour un baptême ou une communion. Expédition sous 2-3 jours.",
+   colors:[{name:"Blanc",hex:"#f4f4f2",photos:["colombes-1","colombes-2","colombes-3","colombes-4"]}],
+   sizes:[{cm:10,label:"10 cm chacune",price:14}]}
 ];
 
 function enhanceModel(el,m){
   const buy=el.querySelector("a.cta"),links=STRIPE[m.id]||{};
-  if(Object.keys(links).length){buy.target="_blank";buy.rel="noopener";buy.textContent="Acheter";}
   const lots=LOTS[m.id],qtyBlock=el.querySelector(".qty-block"),qtysEl=el.querySelector(".qtys"),qtyLabel=el.querySelector(".qty-label"),hint=el.querySelector(".hint");
   let qty=1;
   const sizesEl=el.querySelector(".sizes:not(.qtys)"),sizeLabel=el.querySelector(".size-label"),priceEl=el.querySelector(".price");
@@ -59,7 +69,10 @@ function enhanceModel(el,m){
   function refresh(){
     const n=lots?qty:1,total=lotPrice(size.price,n);
     priceEl.innerHTML=n>1?`${total} € <s>${size.price*n} €</s>`:`${total} €`;
-    buy.href=(n>1?lots[size.cm][n]:links[size.cm])||`${ROOT}#commander`;
+    const pay=(n>1?lots[size.cm][n]:links[size.cm])||"";
+    buy.href=pay||`${ROOT}#commander`;
+    if(pay){buy.target="_blank";buy.rel="noopener";buy.textContent="Acheter";}
+    else{buy.removeAttribute("target");buy.removeAttribute("rel");}
     if(qtyLabel) qtyLabel.textContent=n>1?`${n} Vierges`:"1 Vierge";
     if(qtysEl) [...qtysEl.children].forEach(b=>b.setAttribute("aria-pressed",+b.dataset.n===n));
     if(hint&&m.colors.length>1&&links[size.cm]){hint.hidden=false;hint.textContent=n>1?"Vous choisirez la couleur de chaque Vierge sur la page de paiement : vous pouvez les varier.":"Vous choisirez la couleur sur la page de paiement.";}
