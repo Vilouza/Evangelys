@@ -143,9 +143,17 @@ footer .mark{font-size:.95rem}
 html.js .static-specs{display:none}
 
 .wrap > h1{margin:0 0 28px}
-/* Crèche : photos d'ambiance au format paysage */
-#creche .frame{aspect-ratio:4/3;background:none}
-#creche .frame::after{display:none}
-#creche .frame img{object-fit:cover}
-#creche .thumbs button{aspect-ratio:4/3;width:80px}
-#creche .thumbs button img{object-fit:cover}
+/* Photos d'ambiance, sans détourage */
+#creche .frame,
+#colombes .frame{aspect-ratio:4/3;background:none}
+#creche .frame::after,
+#colombes .frame::after{display:none}
+#creche .frame img,
+#colombes .frame img{object-fit:cover}
+#creche .thumbs button,
+#colombes .thumbs button{aspect-ratio:4/3;width:80px}
+#creche .thumbs button img,
+#colombes .thumbs button img{object-fit:cover}
+#exvoto .frame{background:none}
+#exvoto .frame::after{display:none}
+#exvoto .frame img{object-fit:cover}
